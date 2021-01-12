@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WorkersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EmployeeDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="EmpID" Type="int" Nullable="false" />
+          <Property Name="PayperHour" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManagerDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ManagerID" Type="int" Nullable="false" />
+          <Property Name="AnnualSalary" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="MaxExpenseAccount" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupervisorDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="SupervisorID" Type="int" Nullable="false" />
+          <Property Name="AnnualSalary" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Workers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="100" />
+          <Property Name="WorkerTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkerType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="WorkerType" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EmployeeDetails_Workers">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="1" />
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmployeeDetails">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerDetails_Workers">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="1" />
+          <End Role="ManagerDetails" Type="Self.ManagerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManagerDetails">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupervisorDetails_Workers">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="1" />
+          <End Role="SupervisorDetails" Type="Self.SupervisorDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SupervisorDetails">
+              <PropertyRef Name="SupervisorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workers_WorkerType">
+          <End Role="WorkerType" Type="Self.WorkerType" Multiplicity="1" />
+          <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Workers">
+              <PropertyRef Name="WorkerTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WorkersModelStoreContainer">
+          <EntitySet Name="EmployeeDetails" EntityType="Self.EmployeeDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManagerDetails" EntityType="Self.ManagerDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupervisorDetails" EntityType="Self.SupervisorDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerType" EntityType="Self.WorkerType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EmployeeDetails_Workers" Association="Self.FK_EmployeeDetails_Workers">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerDetails_Workers" Association="Self.FK_ManagerDetails_Workers">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="ManagerDetails" EntitySet="ManagerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupervisorDetails_Workers" Association="Self.FK_SupervisorDetails_Workers">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="SupervisorDetails" EntitySet="SupervisorDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workers_WorkerType" Association="Self.FK_Workers_WorkerType">
+            <End Role="WorkerType" EntitySet="WorkerType" />
+            <End Role="Workers" EntitySet="Workers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WorkersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EmployeeDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="EmpID" Type="Int32" Nullable="false" />
+          <Property Name="PayperHour" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_EmployeeDetails_Workers" FromRole="EmployeeDetails" ToRole="Workers" />
+        </EntityType>
+        <EntityType Name="ManagerDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ManagerID" Type="Int32" Nullable="false" />
+          <Property Name="AnnualSalary" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="MaxExpenseAccount" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_ManagerDetails_Workers" FromRole="ManagerDetails" ToRole="Workers" />
+        </EntityType>
+        <EntityType Name="SupervisorDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="SupervisorID" Type="Int32" Nullable="false" />
+          <Property Name="AnnualSalary" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_SupervisorDetails_Workers" FromRole="SupervisorDetails" ToRole="Workers" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WorkerTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EmployeeDetails" Relationship="Self.FK_EmployeeDetails_Workers" FromRole="Workers" ToRole="EmployeeDetails" />
+          <NavigationProperty Name="ManagerDetails" Relationship="Self.FK_ManagerDetails_Workers" FromRole="Workers" ToRole="ManagerDetails" />
+          <NavigationProperty Name="SupervisorDetails" Relationship="Self.FK_SupervisorDetails_Workers" FromRole="Workers" ToRole="SupervisorDetails" />
+          <NavigationProperty Name="WorkerType" Relationship="Self.FK_Workers_WorkerType" FromRole="Workers" ToRole="WorkerType" />
+        </EntityType>
+        <EntityType Name="WorkerType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="WorkerType1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Workers" Relationship="Self.FK_Workers_WorkerType" FromRole="WorkerType" ToRole="Workers" />
+        </EntityType>
+        <Association Name="FK_EmployeeDetails_Workers">
+          <End Role="Workers" Type="Self.Worker" Multiplicity="1" />
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmployeeDetails">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerDetails_Workers">
+          <End Role="Workers" Type="Self.Worker" Multiplicity="1" />
+          <End Role="ManagerDetails" Type="Self.ManagerDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManagerDetails">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupervisorDetails_Workers">
+          <End Role="Workers" Type="Self.Worker" Multiplicity="1" />
+          <End Role="SupervisorDetails" Type="Self.SupervisorDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SupervisorDetails">
+              <PropertyRef Name="SupervisorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workers_WorkerType">
+          <End Role="WorkerType" Type="Self.WorkerType" Multiplicity="1" />
+          <End Role="Workers" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Workers">
+              <PropertyRef Name="WorkerTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WorkersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EmployeeDetails" EntityType="Self.EmployeeDetail" />
+          <EntitySet Name="ManagerDetails" EntityType="Self.ManagerDetail" />
+          <EntitySet Name="SupervisorDetails" EntityType="Self.SupervisorDetail" />
+          <EntitySet Name="Workers" EntityType="Self.Worker" />
+          <EntitySet Name="WorkerTypes" EntityType="Self.WorkerType" />
+          <AssociationSet Name="FK_EmployeeDetails_Workers" Association="Self.FK_EmployeeDetails_Workers">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerDetails_Workers" Association="Self.FK_ManagerDetails_Workers">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="ManagerDetails" EntitySet="ManagerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupervisorDetails_Workers" Association="Self.FK_SupervisorDetails_Workers">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="SupervisorDetails" EntitySet="SupervisorDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workers_WorkerType" Association="Self.FK_Workers_WorkerType">
+            <End Role="WorkerType" EntitySet="WorkerTypes" />
+            <End Role="Workers" EntitySet="Workers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WorkersModelStoreContainer" CdmEntityContainer="WorkersEntities">
+          <EntitySetMapping Name="EmployeeDetails">
+            <EntityTypeMapping TypeName="WorkersModel.EmployeeDetail">
+              <MappingFragment StoreEntitySet="EmployeeDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="PayperHour" ColumnName="PayperHour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManagerDetails">
+            <EntityTypeMapping TypeName="WorkersModel.ManagerDetail">
+              <MappingFragment StoreEntitySet="ManagerDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="AnnualSalary" ColumnName="AnnualSalary" />
+                <ScalarProperty Name="MaxExpenseAccount" ColumnName="MaxExpenseAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupervisorDetails">
+            <EntityTypeMapping TypeName="WorkersModel.SupervisorDetail">
+              <MappingFragment StoreEntitySet="SupervisorDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />
+                <ScalarProperty Name="AnnualSalary" ColumnName="AnnualSalary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workers">
+            <EntityTypeMapping TypeName="WorkersModel.Worker">
+              <MappingFragment StoreEntitySet="Workers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="WorkerTypeID" ColumnName="WorkerTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerTypes">
+            <EntityTypeMapping TypeName="WorkersModel.WorkerType">
+              <MappingFragment StoreEntitySet="WorkerType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WorkerType1" ColumnName="WorkerType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

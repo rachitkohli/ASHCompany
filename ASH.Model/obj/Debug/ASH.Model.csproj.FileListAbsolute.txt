@@ -1,0 +1,12 @@
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\bin\Debug\ASH.Model.dll.config
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\bin\Debug\ASH.Model.dll
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\bin\Debug\ASH.Model.pdb
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\bin\Debug\EntityFramework.dll
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\bin\Debug\EntityFramework.xml
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\obj\Debug\ASH.Model.csprojAssemblyReference.cache
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\obj\Debug\ASH.Model.csproj.CoreCompileInputs.cache
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\obj\Debug\ASH.Model.csproj.CopyComplete
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\obj\Debug\ASH.Model.dll
+C:\Users\Rachit\source\repos\ASHCompany\ASH.Model\obj\Debug\ASH.Model.pdb

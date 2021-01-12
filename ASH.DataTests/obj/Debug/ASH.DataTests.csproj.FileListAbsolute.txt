@@ -1,0 +1,2 @@
+C:\Users\Rachit\source\repos\ASHCompany\ASH.DataTests\obj\Debug\ASH.DataTests.csprojAssemblyReference.cache
+C:\Users\Rachit\source\repos\ASHCompany\ASH.DataTests\obj\Debug\ASH.DataTests.csproj.CoreCompileInputs.cache
